@@ -4,9 +4,40 @@ Examples
 ==============================================================
 
 1. Connecting to the Database
-<?php
-require_once 'couchdb_source.php';
+--------------------------------------------------------------
+	<?php
+	require_once 'couchdb_source.php';
 
-$couchdb = new CouchdbSource(array(
-	'host' => 'http://testuser:test@127.0.0.1:5984'
-));
+	$couchdb = new CouchdbSource(array(
+		'host' => 'http://testuser:test@127.0.0.1:5984'
+	));
+	?>
+
+2. Requesting data from a database
+--------------------------------------------------------------
+	<?php
+	require_once 'couchdb_source.php';
+
+	$couchdb = new CouchdbSource(array(
+		'host' => 'http://testuser:test@127.0.0.1:5984'
+	));
+
+	$couchdb->find('/tasks');
+	?>
+
+3. Creating a database
+--------------------------------------------------------------
+	<?php
+	require_once 'couchdb_source.php';
+
+	$couchdb = new CouchdbSource(array(
+		'host' => 'http://testuser:test@127.0.0.1:5984'
+	));
+
+	if(!$couchdb->exists('/tasks')) {
+		$response = $couchdb->createDatabase('tasks');
+		if(isset($response->error)) {
+			die('Could not create Database! Check CouchDB Settings!<br/> Error Message: <i><b>'.$response->reason.'</b></i>');
+		}
+	}
+	?>
