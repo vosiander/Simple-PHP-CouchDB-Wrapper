@@ -1,0 +1,12 @@
+A simple CouchDB PHP Wrapper to access your CouchDB Database.
+
+Examples
+==============================================================
+
+1. Connecting to the Database
+<?php
+require_once 'couchdb_source.php';
+
+$couchdb = new CouchdbSource(array(
+	'host' => 'http://testuser:test@127.0.0.1:5984'
+));
